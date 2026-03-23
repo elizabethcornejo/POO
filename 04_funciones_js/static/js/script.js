@@ -26,7 +26,7 @@ function registrarAlumno() {
 }
 
 
-________________________________________________________________________________
+
 
 
 /*Ejercicio 2: Fila de Urgencias Médicas (unshift e if)
@@ -50,7 +50,7 @@ function agregarUrgencia() {
     const result = document.getElementById("result2")
     const input = document.getElementById("input2");
     //input = parseInt(input); --> transformar a numero  
-    if(input.value !== ""){
+    if (input.value !== "") {
         let nombre = input.value;
         let resultado = agregarUrgencia(nombre);
         result.textContent = resultado;
@@ -59,9 +59,8 @@ function agregarUrgencia() {
     } else {
         alert("El nombre no puede estar vacio ")
     }
-    
+
 }
-________________________________________________________________________________
 
 /*Ejercicio 3: Sistema de Delivery (shift, pop e if)
 Contexto: Un restaurante tiene pedidos listos. El cajero puede despachar el pedido más antiguo, o cancelar el último pedido que entró por un error.
@@ -73,9 +72,31 @@ Usa un else if. Si escribió "cancelar", usa .pop() para eliminar la última com
 Muestra en el textContent: "Pedidos pendientes: " seguido del arreglo.
 Limpia el input.
  */
+let entregas = ["Pizza", "Sushi", "Hamburguesa", "Ensalada"];
+
+function actualizarPedidos(pedido) {
+    if (pedido == "despachar") {
+        entregas.shift()
+    } else if (pedido == "cancelar") {
+        entregas.pop()
+    } else {
+        alert("Ingresar un valor valido")
+    }
+    return `Pedidos pendientes: ${entregas.join(", ")}`
+}
+
+function gestionarPedidos() {
+    const container = document.getElementById("container3")
+    const result = document.getElementById("result3")
+    const texto = document.getElementById("input3");
+    let input = texto.value.toLowerCase();
+    let resultado = actualizarPedidos(input);
+    result.textContent = resultado;
+    texto.value = "";
+    container.classList.remove("d-none");
+}
 
 
-________________________________________________________________________________
 
 /*Ejercicio 4: Validador de Códigos de Descuento (for e if)
 Contexto: Una tienda online revisa si el código promocional que ingresó el cliente existe en su base de datos para aplicarle una rebaja.
@@ -88,9 +109,29 @@ Si el elemento actual del ciclo es igual al texto del input, cambia la variable 
 Fuera del ciclo, inyecta la variable mensaje en el textContent del párrafo.
 Limpia el input.
  */
-
-________________________________________________________________________________
-
+let codigosValidos = ["VERANO2026", "PROMO50", "CLIENTEVIP"];
+function buscarCodigpo(codigo) {
+    let mensaje = "Codigo invalido o expírado";
+    for (let i = 0; i < codigosValidos.length; i++) {
+        if (codigo === codigosValidos[i]) {
+            mensaje = "Exito codigo aceptado";
+            return "Exito codigo aceptado";
+        } else {
+            mensaje = "Ingresar un codigo valido";
+        }
+    }
+    return mensaje
+}
+function verificarCodigo() {
+    let input = document.getElementById("input4");
+    let codigo = input.value;
+    const result = document.getElementById("result4")
+    const container = document.getElementById("container4");
+    let resultado = buscarCodigo(codigo);
+    result.textContent = resultado;
+    input.value = "";
+    container.classList.remove("d-none");
+}
 /*Ejercicio 5: Simulador de Cuotas (for)
 Contexto: Un cliente compra un producto y el sistema le genera automáticamente las etiquetas para sus próximas 3 letras de pago.
 Función Principal: Crea simularCuotas().
@@ -102,7 +143,7 @@ Fuera del ciclo, muestra la variable registroPagos en el textContent del párraf
 Limpia el input.
  */
 
-________________________________________________________________________________
+
 
 /*Ejercicio 6: Filtro de Presupuesto (for e if)
 Contexto: Una vitrina virtual tiene varios precios. El cliente ingresa cuánta plata tiene en el bolsillo, y el sistema le muestra solo los precios que le alcanza para pagar.
@@ -116,7 +157,6 @@ Muestra el resultado en el textContent del párrafo.
 Limpia el input.
  */
 
-________________________________________________________________________________
 
 /*Ejercicio 7: Cálculo de Sueldo Líquido (Una función llama a otra)
 Contexto: El usuario ingresa su Sueldo Bruto. Una función matemática oculta descuenta el 20% (AFP y Salud) y le devuelve el dato a la pantalla para mostrar cuánto dinero real recibirá a fin de mes.
@@ -128,7 +168,6 @@ Modifica el textContent del párrafo: "Tu sueldo a pago es: $" + sueldoLiquido.
 Limpia el input.
  */
 
-________________________________________________________________________________
 
 /*Ejercicio 8: El Carrito de Compras (Reto Final - Delegación de tareas)
 Contexto: Vamos agregando productos al carrito. Una función anota el producto y le pide ayuda a otra función para que dibuje el carrito actualizado en la pantalla.
