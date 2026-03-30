@@ -142,7 +142,19 @@ En cada vuelta, súmale (+=) a registroPagos el producto y el número de la cuot
 Fuera del ciclo, muestra la variable registroPagos en el textContent del párrafo.
 Limpia el input.
  */
-
+function simularCuotas() {
+    const producto = document.getElementById("input5_1");
+    let valorProducto = parseInt(producto.value);
+    const cuotaInput = document.getElementById("input5_2");
+    let cuota = parseInt(cuotaInput.value);
+    const result = document.getElementById("result5");
+    const container = document.getElementById("container5");
+    let resultado = clacularCuotas(valorProducto, cuota)
+    result.textContent = resultado;
+    producto.value = "";
+    cuotaInput.value = "";
+    container.classList.remove("d-none");
+}
 
 
 /*Ejercicio 6: Filtro de Presupuesto (for e if)
@@ -156,7 +168,37 @@ Dentro del ciclo, usa un if. Si el precio actual del arreglo es menor o igual (<
 Muestra el resultado en el textContent del párrafo.
 Limpia el input.
  */
+let vitrina = [2500, 15000, 8000, 30000, 5000];
+let opciones = [];
+function comprobarPresupuesto(presupuesto) {
+    for (let i = 0; i <= vitrina.length; i++) {
+        if (presupuesto >= vitrina[i]) {
+            opciones.push(vitrina[i]);
+        };
+    };
+    if (opciones == "") {
+        return "No te alcansa para nada.";
+    } else {
+        return `Te alcanza para los precios: ${opciones.join(" - ")}`
+    }
+};
+function filtrarPrecios() {
+    let input = document.getElementById("input6");
+    const result = document.getElementById("result6");
+    const container = document.getElementById("container6");
+    let dinero = parseInt(input.value);
+    if (isNaN(dinero)) {
+        alert("ingresar valores validos.")
+    } else {
+        let resultado = comprobarPresupuesto(dinero);
+        result.textContent = resultado;
+        input.value = "";
+        container.classList.remove("d-none")
+        opciones = [];
+    }
+}
 
+//
 
 /*Ejercicio 7: Cálculo de Sueldo Líquido (Una función llama a otra)
 Contexto: El usuario ingresa su Sueldo Bruto. Una función matemática oculta descuenta el 20% (AFP y Salud) y le devuelve el dato a la pantalla para mostrar cuánto dinero real recibirá a fin de mes.
@@ -167,6 +209,11 @@ Dentro de procesarSueldo, llama a tu función calcularDescuentos() pasándole el
 Modifica el textContent del párrafo: "Tu sueldo a pago es: $" + sueldoLiquido.
 Limpia el input.
  */
+
+
+function calificacionesChile(){
+
+}
 
 
 /*Ejercicio 8: El Carrito de Compras (Reto Final - Delegación de tareas)
